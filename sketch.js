@@ -1,10 +1,25 @@
+let img;
+let imageSize;
+let d;
+
+function preload() {
+	img = loadImage('assets/bgBarstow.png');
+}
+
 function setup() {
-  // put setup code here
-  createCanvas(800,800);
+
+	createCanvas(800, 800);
+
+  image(img, 0, 0, 800, 800);
+  d = pixelDensity();
+  imageSize = 4 * (width*d) * (height * d);
 
 }
 
 function draw() {
-  // put drawing code here
-  ellipse(mouseX, mouseY, 200, 200);
+  loadPixels();
+  for (let i = 0; i < imageSize; i++) {
+  	pixels[i] = pixels[i+4];
+  }
+  updatePixels();
 }
